@@ -24,6 +24,8 @@ The SafeQuant protein quantitation data can be upload in this Streamlit app, whi
 
 Use the provided PROTEIN.tsv file and upload it on the Streamlit app.
 
+The app delivers optimal visualization results when using a light theme.
+
 # Known issues
 
 When generating your own data with SafeQuant, the experimental condition names should not contain any underscores.
