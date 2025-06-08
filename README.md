@@ -20,7 +20,7 @@ The SafeQuant protein quantitation data can be upload in this Streamlit app, whi
 - The app has been deployed on [Streamlit Community Cloud](https://safequantvisualization.streamlit.app/). Alternatively, the .py file can be downloaded and executed using a local Streamlit installation.
   
 
-## How to Use the Project
+## How to use the Project
 
 Use the provided PROTEIN.tsv file and upload it on the Streamlit app.
 
