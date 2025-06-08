@@ -11,7 +11,7 @@ The Mass-Spec raw data from a label-free Proteomics experiment are first importe
 The SafeQuant protein quantitation data can be upload in this Streamlit app, which will generate interactive volcano plots that depict the relative abundance of proteins between experimental conditions.
 
 
-## How to Install and Run the Project
+## How to Install and run the Project
 
 - All functions are written in Python 3.
 
