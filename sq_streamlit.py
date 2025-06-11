@@ -717,7 +717,8 @@ if file is not None:
         max_value = 3.0,
         value = 2.0,
         step = 0.1)
-
+    
+    st.write("--------------------------------------------------")
     
     # visualization alternative 1: plotly plots without text annotations
     
