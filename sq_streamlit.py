@@ -265,7 +265,7 @@ def sq_processing_manual(sq_df):
 ###############
 # defining a function
 
-def sq_plot(dictionary):
+def sq_plot(dictionary, enrichment_threshold, statistical_threshold):
     
     """
     This function visualizes the elements of a dictionary whose values are Pandas dataframes containing data from SafeQuant.
@@ -387,10 +387,10 @@ def sq_plot(dictionary):
 
         # adding background shapes
         fig.add_shape(type = "rect",
-                      x0 = 2, 
+                      x0 = enrichment_threshold, 
                       y0 = 0, 
                       x1 = log2range, 
-                      y1 = 2,
+                      y1 = statistical_threshold,
                       line = {"color" : "blue", "width" : 0},
                       fillcolor = "blue",
                       opacity = 0.1
@@ -399,7 +399,7 @@ def sq_plot(dictionary):
         fig.add_shape(type="rect",
                       x0 = 0, 
                       y0 = 0, 
-                      x1 = 2, 
+                      x1 = enrichment_threshold, 
                       y1 = log10range,
                       line = {"color" : "blue", "width" : 0},
                       fillcolor = "blue",
@@ -407,10 +407,10 @@ def sq_plot(dictionary):
                      )
         
         fig.add_shape(type="rect",
-                      x0 = -2, 
+                      x0 = -enrichment_threshold, 
                       y0 = 0, 
                       x1 = -log2range, 
-                      y1 = 2,
+                      y1 = statistical_threshold,
                       line = {"color" : "blue", "width" : 0},
                       fillcolor="blue",
                       opacity=0.1
@@ -419,7 +419,7 @@ def sq_plot(dictionary):
         fig.add_shape(type="rect",
                       x0 = 0, 
                       y0 = 0, 
-                      x1 = -2, 
+                      x1 = -enrichment_threshold, 
                       y1 = log10range,
                       line = {"color" : "blue", "width" : 0},
                       fillcolor="blue",
@@ -436,7 +436,7 @@ def sq_plot(dictionary):
 ###############
 # defining a function
 
-def sq_plot_text(dictionary):
+def sq_plot_text(dictionary, enrichment_threshold, statistical_threshold):
     
     """
     This function visualizes the elements of a dictionary whose values are Pandas dataframes containing data from SafeQuant.
@@ -559,10 +559,10 @@ def sq_plot_text(dictionary):
 
         # adding background shapes
         fig.add_shape(type = "rect",
-                      x0 = 2, 
+                      x0 = enrichment_threshold, 
                       y0 = 0, 
                       x1 = log2range, 
-                      y1 = 2,
+                      y1 = statistical_threshold,
                       line = {"color" : "blue", "width" : 0},
                       fillcolor = "blue",
                       opacity = 0.1
@@ -571,7 +571,7 @@ def sq_plot_text(dictionary):
         fig.add_shape(type="rect",
                       x0 = 0, 
                       y0 = 0, 
-                      x1 = 2, 
+                      x1 = enrichment_threshold, 
                       y1 = log10range,
                       line = {"color" : "blue", "width" : 0},
                       fillcolor = "blue",
@@ -579,10 +579,10 @@ def sq_plot_text(dictionary):
                      )
         
         fig.add_shape(type="rect",
-                      x0 = -2, 
+                      x0 = -enrichment_threshold, 
                       y0 = 0, 
                       x1 = -log2range, 
-                      y1 = 2,
+                      y1 = statistical_threshold,
                       line = {"color" : "blue", "width" : 0},
                       fillcolor="blue",
                       opacity=0.1
@@ -591,7 +591,7 @@ def sq_plot_text(dictionary):
         fig.add_shape(type="rect",
                       x0 = 0, 
                       y0 = 0, 
-                      x1 = -2, 
+                      x1 = -enrichment_threshold, 
                       y1 = log10range,
                       line = {"color" : "blue", "width" : 0},
                       fillcolor="blue",
@@ -699,6 +699,24 @@ if file is not None:
     
     
     st.write("--------------------------------------------------")
+    
+    # setting the enrichment and statistical significance thresholds
+    
+    st.write("#### You can set the enrichment and statistical significance thresholds.")
+    
+    enrichment_thr = st.slider(
+        label = "Set the enrichment threshold (log2 space):",
+        min_value = 0.0,
+        max_value = 10.0,
+        value = 2.0,
+        step = 0.5)
+    
+    statistical_thr = st.slider(
+        label = "Set the statistical threshold (-log10 space):",
+        min_value = 0.0,
+        max_value = 3.0,
+        value = 2.0,
+        step = 0.1)
 
     
     # visualization alternative 1: plotly plots without text annotations
@@ -707,7 +725,7 @@ if file is not None:
     st.write("#### You can download the volcano plots without annotations.")
     
     
-    sq_plot(dict_for_viz)
+    sq_plot(dict_for_viz, enrichment_thr, statistical_thr)
     
     
     st.write("--------------------------------------------------")
@@ -719,9 +737,10 @@ if file is not None:
     st.write("#### You can download the volcano plots with annotations.")
     
     
-    sq_plot_text(dict_for_viz)
+    sq_plot_text(dict_for_viz, enrichment_thr, statistical_thr)
     
     
+    st.write("--------------------------------------------------")
     st.write("--------------------------------------------------")
     
 else:
